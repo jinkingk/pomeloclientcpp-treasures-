@@ -26,7 +26,7 @@ struct EntityData
 class Entity
 {
 public:
-	Entity::Entity();
+	Entity();
 public:
 	EntityData edata;
 public:

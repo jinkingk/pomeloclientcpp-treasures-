@@ -1,8 +1,7 @@
 #include "TreasureLogin.h"
-#include "cJSON/cJSON.h"
 #include "ui/UIButton.h"
 #include "ui/UIEditBox/UIEditBox.h"
-
+#include "json/document.h"
 #include "AreaScene.h"
 
 USING_NS_CC;
@@ -67,26 +66,26 @@ bool TeLogin::init()
 		sprintf(buff, "{\"uid\": \"%s\"}", nameEditBox->getText());
 		PomeloClient::getInstance()->requestWithTimeout("gate.gateHandler.queryEntry", buff, (void *)0x14, 2, [=](const char *msg) {
 			CCLOG("resp %s = :", msg);
-			/*using rapidjson::Document;
+			using rapidjson::Document;
 			Document doc;
 			doc.Parse<0>(msg);
-			port = doc["port"].GetInt();*/
+			port = doc["port"].GetInt();
 
-			std::string s = msg;
+			//std::string s = msg;
 
 			//std::string searchFora("\"");
 			//while(s.find(searchFora) != std::string::npos)
 			//	s = s.replace(s.find(searchFora),sizeof(searchFora), """);
 
-			cJSON *json, *json_value;
-			// 解析数据包  
-			json = cJSON_Parse(msg);
-			json_value = cJSON_GetObjectItem(json, "port");
-			port = json_value->valueint;
-			cJSON_Delete(json);
+			//cJSON *json, *json_value;
+			//// 解析数据包  
+			//json = cJSON_Parse(msg);
+			//json_value = cJSON_GetObjectItem(json, "port");
+			//port = json_value->valueint;
+			//cJSON_Delete(json);
 
-			pomeloClient->destroy();
-
+			pomeloClient->disconnect();
+			CCLOG("destroy");
 			auto name = nameEditBox->getText();
 			auto scene = AreaScene::createScene(port, name);
 			Director::getInstance()->replaceScene(scene);

@@ -9,7 +9,6 @@ PomeloClient* PomeloClient::getInstance()
 		PomeloClient::initLib(NULL, NULL, NULL, NULL);
 		s_PomeloClient = PomeloClient::createClient();
 	}
-
 	return s_PomeloClient;
 }
 

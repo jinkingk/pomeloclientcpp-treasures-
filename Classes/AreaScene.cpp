@@ -43,6 +43,7 @@ bool AreaScene::init()
 
 void AreaScene::connectToServer(int port)
 {
+	CCLOG("connectToServer");
 	//PomeloClient::initLib(NULL, NULL, NULL, NULL);
 	pomeloClient = PomeloClient::getInstance();
 	PomeloClient::getInstance()->registerEventCb(PC_EV_CONNECTED_NAME, [=](const char *msg) {

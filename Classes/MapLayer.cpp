@@ -297,7 +297,7 @@ void MapLayer::parseES(const char* msg)
 			sprintf(buf, "%d", entitydata.id);
 			ret = esmsg.players.insert(std::pair<std::string, EntityData>(buf, entitydata));
 			if (ret.second == false)
-				CCLOG("add player twice! player : %s", entitydata.name);
+				CCLOG("add player twice! player : %s", entitydata.name.c_str());
 		}			
 	}
 }
